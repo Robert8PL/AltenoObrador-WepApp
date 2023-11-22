@@ -11,7 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-    
+            Schema::create('clientes',function (Blueprint $table){
+                $table->id();
+                $table->string('nombre', 50);
+                $table->string('direccion', 70);
+                $table->string('tel',10);
+                $table->string('email',10)->nullable();
+                $table->float('Deuda');
+                $table->boolean('estado');
+
+            });
     }
 
     /**

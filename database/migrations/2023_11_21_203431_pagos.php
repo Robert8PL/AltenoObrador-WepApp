@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('pagos', function(Blueprint $table){
+            $table->id();
+            $table->foreign('idCliente')->references('id')->on('clientes');
+            $table->date('fecha_pago');
+            $table->float('monto');
+            $table->string('nota_pago',150);
+
+        });
     }
 
     /**
