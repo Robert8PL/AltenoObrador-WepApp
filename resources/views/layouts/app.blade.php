@@ -14,9 +14,9 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script src="{{asset('build/assets/cusmComponents.js')}}"></script>
+        <script src="{{asset('cusmComponents.js')}}"></script>
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('build/assets/cusmComponents.css') }}">
+        <link rel="stylesheet" href="{{ asset('cusmComponents.css') }}">
         @livewireStyles
 
     </head>
