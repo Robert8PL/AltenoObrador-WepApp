@@ -17,16 +17,28 @@ return new class extends Migration
         Schema::create('pedidos', function(Blueprint $table){
 
             $table->id();
-            $table->foreign('idCliente')->references('id')->on('clientes');
+            $table->bigInteger('id_cliente',false,true);
+          
             $table->integer('nPedido', false, true);
+
+            $table->bigInteger('idProd1',false,true);
+            $table->bigInteger('idProd2',false,true);
+            $table->bigInteger('idProd3',false,true);
+            $table->bigInteger('idProd4',false,true);
+            $table->bigInteger('idProd5',false,true);
+            
+            
+            $table->float('total');
+            $table->float('pago');
+            $table->smallInteger('estado');
+        
+            $table->foreign('id_cliente')->references('id')->on('clientes');
             $table->foreign('idProd1')->references('id')->on('productos');
             $table->foreign('idProd2')->references('id')->on('productos');
             $table->foreign('idProd3')->references('id')->on('productos');
             $table->foreign('idProd4')->references('id')->on('productos');
             $table->foreign('idProd5')->references('id')->on('productos');
-            $table->float('total');
-            $table->float('pago');
-            $table->smallInteger('estado');
+        
         });
     }
 

@@ -17,7 +17,7 @@ return new class extends Migration
                 $table->string('direccion', 70);
                 $table->string('tel',10);
                 $table->string('email',10)->nullable();
-                $table->float('Deuda');
+                $table->float('deuda');
                 $table->boolean('estado');
 
             });

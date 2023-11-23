@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('pagos', function(Blueprint $table){
             $table->id();
-            $table->foreign('idCliente')->references('id')->on('clientes');
+            $table->bigInteger('id_cliente',false,true);
+            $table->foreign('id_cliente')->references('id')->on('clientes');
             $table->date('fecha_pago');
             $table->float('monto');
             $table->string('nota_pago',150);
