@@ -9,13 +9,15 @@
        
         <div class="custom-modal m-clientes w-screen h-screen hidden left-0 top-0 backdrop-blur-sm transition">
 
-            <div class="w-2/6 h-2/5 bg-gray-200 relative top-1/4 left-1/4 opacity-75 rounded-xl "> 
+            <div class="w-2/6 h-3/5 bg-gray-200 relative top-1/4 left-1/4 opacity-75 rounded-xl "> 
                     <div class="p-2 pt-8 font-sans text-center">
                         <h3 class="text-2xl text-gray-800 font-bold">Agregar un cliente</h3>
 
 
                         <form action="" method="post" class="mt-5">
                             <input type="text" id="nombre" placeholder="Nombre" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
+                            <input type="text" id="Telefono" placeholder="Telefono" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
+                            <input type="text" id="correo" placeholder="Correo electronico" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
                             <input type="text" id="dir" placeholder="Dirección" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-2"> <br>
                                
                                 <input type="checkbox" name="activo" id="activo" class="my-8">
@@ -35,15 +37,18 @@
 
                 <div class="custom-modal m-edit-clientes w-screen h-screen hidden left-0 top-0 backdrop-blur-sm transition">
 
-                    <div class="w-2/6 h-2/6 bg-gray-200 relative top-1/4 left-1/4 opacity-75 rounded-xl "> 
+                    <div class="w-2/6 h-3/6 bg-gray-200 relative top-1/4 left-1/4 opacity-75 rounded-xl "> 
                             <div class="p-2 pt-8 font-sans text-center">
                                 <h3 class="text-2xl text-gray-800 font-bold">Editar cliente</h3>
         
         
                                 <form action="" method="update" class="mt-5">
-                                    <input type="text" id="nombre" placeholder="Nombre" class="rounded-xl bg-gray-100 bg-transparent w-1/2 text-center mb-5">
-                                    <input type="text" id="dir" placeholder="Dirección" class="rounded-xl bg-gray-100 bg-transparent w-1/2 text-center mb-5"> <br>
-                                       
+                                    <input type="text" id="nombre" placeholder="Nombre" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
+                                    <input type="text" id="dir" placeholder="Dirección" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5"> 
+                                    <input type="text" id="Telefono" placeholder="Telefono" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
+                                    <input type="text" id="correo" placeholder="Correo electronico" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
+                                    <br>
+                                    
                                             <input type="submit" value="Registrar" class="w-40 h-8 bg-blue-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-gray-500 cursor-pointer transition-all hover:bg-blue-900 hover:text-teal-300 hover:shadow-md hover:ring-2">
                                             <button type="button" id="btn-cerrar2"  class="w-40 h-8 ml-5 bg-red-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-red-500   transition-all hover:bg-red-900  hover:shadow-md hover:ring-2">Cancelar</button>
                                         </div>

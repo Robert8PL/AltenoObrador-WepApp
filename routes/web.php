@@ -28,6 +28,9 @@ Route::get('/clientes', function () {
 
 
 
+
+
+
 Route::get('/pedidos', function () {
     return view('pedidos');
 })->name('pedidos');
