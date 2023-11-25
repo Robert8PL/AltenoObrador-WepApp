@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\repartidores;
 use Illuminate\Http\Request;
 
-use function Ramsey\Uuid\v1;
-
-class PagosController extends Controller
+class RepartidoresController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pagos');
+        //
     }
 
     /**
@@ -35,7 +34,7 @@ class PagosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(repartidores $repartidores)
     {
         //
     }
@@ -43,7 +42,7 @@ class PagosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(repartidores $repartidores)
     {
         //
     }
@@ -51,7 +50,7 @@ class PagosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, repartidores $repartidores)
     {
         //
     }
@@ -59,7 +58,7 @@ class PagosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(repartidores $repartidores)
     {
         //
     }

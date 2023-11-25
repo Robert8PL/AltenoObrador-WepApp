@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\cliente;
 
 class ClienteController extends Controller
 {
@@ -11,23 +12,31 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        
+        $data['clientes'] = cliente::paginate(25);  
+
+       return view ('clientes',$data);
+      
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
+    {   
+       
+        $cli = new cliente();
+        
+        $cli->nombre = $request->nombreAdd;
+        $cli->direccion = $request->dirAdd;
+        $cli->tel = $request->telefonoAdd;
+        $cli->email = $request->correoAdd;
+        $cli->deuda = 0.0;
+        $cli->estado = (isset($request->activo))? 1 : 0;
+        $cli->save();
+
+        return view('clientes');
     }
 
     /**

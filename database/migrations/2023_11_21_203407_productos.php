@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre',30);
             $table->float('costo');
             $table->boolean('estado');
+            $table->timestamps();
         });
     }
 

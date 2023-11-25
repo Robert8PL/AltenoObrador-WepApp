@@ -38,7 +38,7 @@ return new class extends Migration
             $table->foreign('idProd3')->references('id')->on('productos');
             $table->foreign('idProd4')->references('id')->on('productos');
             $table->foreign('idProd5')->references('id')->on('productos');
-        
+            $table->timestamps();
         });
     }
 

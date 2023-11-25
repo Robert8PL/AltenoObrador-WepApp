@@ -1,0 +1,21 @@
+
+
+.m-edit-cliente > .center-modal{
+    width: 28rem;
+    height: 26rem;
+    top: calc(50% - 13rem);
+    left: calc(50% - 14rem);
+}
+
+.m-add-cliente > .center-modal{
+    width: 34rem;
+    height: 30rem;
+    top: calc(50% - 15rem);
+    left: calc(50% - 17rem);
+}
+
+.m-delete-clientes > .center-modal{
+    width: 28rem;
+    top:calc(50% - 6rem);
+    left: calc(50% - 14rem);
+}

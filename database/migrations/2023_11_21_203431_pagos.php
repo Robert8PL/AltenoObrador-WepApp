@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('fecha_pago');
             $table->float('monto');
             $table->string('nota_pago',150);
-
+            $table->timestamps();
         });
     }
 

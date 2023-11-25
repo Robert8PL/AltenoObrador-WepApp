@@ -2,6 +2,12 @@
 
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
+
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\PagosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,24 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pagos', function (){
-    return view('pagos');
-})->name('pagos');
 
-Route::get('/clientes', function () {
-    return view('clientes');
-})->name('clientes');
-
-
-
-
-
-
-Route::get('/pedidos', function () {
-    return view('pedidos');
-})->name('pedidos');
-
-
+Route::resource('clientes', ClienteController::class);
+Route::resource('productos',ProductosController::class);
+Route::resource('pedidos', PedidosController::class);
+Route::resource('pagos', PagosController::class);
 
 
 Route::middleware([
@@ -47,6 +40,7 @@ Route::middleware([
         return view('configuracion');
     })->name('config');
 });
+
 
 Route::middleware([
     'auth:sanctum',

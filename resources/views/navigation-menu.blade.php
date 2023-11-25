@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{asset('img/appicon.png')}}"  class="block h-9 w-auto    " alt="app">
+                        <img src="{{asset('img/appicon.png')}}"  class="block h-9 w-auto" alt="app">
                     </a>
                 </div>
 
@@ -16,16 +16,16 @@
                         {{ __('Inicio') }}
                     </x-nav-link>
                     
-                    <x-nav-link href="{{ route('clientes') }}" :active="request()->routeIs('clientes')">
+                    <x-nav-link href="{{ route('clientes.index') }}" :active="request()->routeIs('clientes.index')">
                         {{ __('Clientes') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('pedidos') }}" :active="request()->routeIs('pedidos')">
+                    <x-nav-link href="{{ route('pedidos.index') }}" :active="request()->routeIs('pedidos.index')">
                         {{ __('Pedidos') }}
                     </x-nav-link>
 
                   
                     
-                    <x-nav-link href="{{ route('pagos') }}" :active="request()->routeIs('pagos')">
+                    <x-nav-link href="{{ route('pagos.index') }}" :active="request()->routeIs('pagos.index')">
                         {{ __('pagos') }}
                     </x-nav-link>
                 </div>
