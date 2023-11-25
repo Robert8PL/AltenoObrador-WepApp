@@ -51,6 +51,7 @@
                                     <input type="tel" maxlength="10" id="telefonoEdit" placeholder="Telefono" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
                                     <input type="email" id="correoEdit" placeholder="Correo electronico (opcional)" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
                                     <input type="text" id="dirEdit" placeholder="Dirección" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5"> 
+                                    <input type="hidden" name="id_cli" id="id_cli" value="">
                                     <br>
                                     
                                             <input type="submit" value="Registrar" id="btnEditCli" class="w-40 h-8 bg-blue-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-gray-500 cursor-pointer transition-all hover:bg-blue-900 hover:text-teal-300 hover:shadow-md hover:ring-2  disabled:opacity-25 disabled:cursor-not-allowed">
@@ -88,7 +89,7 @@
 
 
         </div>
-        <table class="w-3/4 mx-auto bg-white border border-gray-300">
+        <table class="w-3/4 lg:w-5/6 mx-auto bg-white border border-gray-300">
             <thead>
                
 
@@ -102,24 +103,24 @@
             </thead>
             <tbody> 
                  @foreach($clientes as $cliente)
-                 <p class="hidden">{{ $deudaEstado = (26000 * 100 / 50000) }}</p>
+                 <p class="hidden">{{ $deudaEstado = ($cliente->deuda * 100 / 50000) }}</p>
                 
-                 <tr class="text-center">
+                 <tr class="text-center hover:bg-slate-100">
                 <td class="py-2 px-4 border-b"> {{ $cliente->nombre }}</td>
                 <td class="py-2 px-4 border-b"> {{ $cliente->direccion }}  </td>
                 <td class="py-2 px-4 border-b font-bold text-{{ 
                 
-                $deudaEstado < 50 ? 'blue' : ($deudaEstado < 75 ? 'orange' : 'red' )
+                $deudaEstado < 25 ? 'blue' : ($deudaEstado < 50 ? 'amber' : 
+                ($deudaEstado < 65 ? 'orange' : 'red'))
                 
-                
-                }}-500"> {{ $cliente->deuda }} / $50,000</td>
+                }}-500"> ${{ $cliente->deuda }} / $50,000</td>
                 <td class="py-2 px-4 border-b">
-                    <span class=" {{ ($cliente->estado == 1) ? 'text-green-500' : 'text-red-500' }}">
+                    <span class="{{ ($cliente->estado == 1) ? 'text-green-500' : 'text-red-500' }}">
                          {{ $cliente->estado ? 'ACTIVO' : 'INACTIVO' }} 
                     </span>
                 </td>
-                <td class="border-b"> <x-button class="bg-yellow-500" id="editarClientes">Editar</x-button>
-                <x-button class="bg-red-500" id="eliminarClientes">Eliminar</x-button>
+                <td class="border-b"> <x-button class="bg-yellow-500 my-2 editarClientes" id="{{$cliente->id}}" >Editar</x-button>
+                <x-button class="bg-red-500 eliminarClientes mb-1" id="{{$cliente->id}}">Eliminar</x-button>
                 </td>
             </tr>
                  @endforeach 

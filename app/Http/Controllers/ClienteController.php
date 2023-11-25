@@ -23,8 +23,7 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {   
+    public function store(Request $request){   
        
         $cli = new cliente();
         
@@ -36,7 +35,7 @@ class ClienteController extends Controller
         $cli->estado = (isset($request->activo))? 1 : 0;
         $cli->save();
 
-        return view('clientes');
+        return redirect()->action([ClienteController::class,'index']);
     }
 
     /**

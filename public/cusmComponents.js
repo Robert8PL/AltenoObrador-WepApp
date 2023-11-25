@@ -72,27 +72,46 @@ document.querySelector('#agregarClientes')
 });
 
 //modal editar clientes
-document.querySelector('#editarClientes')
-.addEventListener('click',(e)=>{
-    if(modal.classList.contains('hidden')){
+ 
+   
+var btnsEditarClientes = document.querySelectorAll('.editarClientes');
 
-        modalEditClientes.classList.remove('hidden');
-        modalEditClientes.classList.add("fixed");
-        document.querySelector("#activo").checked = true;
-        btnEditCli.disabled = true;
-    }
+btnsEditarClientes.forEach((btn)=>{
+    btn.addEventListener('click',(e)=>{
+        if(modal.classList.contains('hidden')){
+
+            modalEditClientes.classList.remove('hidden');
+            modalEditClientes.classList.add("fixed");
+            document.querySelector("#activo").checked = true;
+            btnEditCli.disabled = true;
+
+            let id = e.target.id;
+            document.querySelector('#id_cli').value = id;
+    
+        }
+    })
+   
 });
+
+   
+
 
 //modal eliminar clientes
-document.querySelector('#eliminarClientes')
-.addEventListener('click',(e)=>{
-    if(modaldeleteClientes.classList.contains('hidden')){
 
-        modaldeleteClientes.classList.remove('hidden');
-        modaldeleteClientes.classList.add("fixed");
-        document.querySelector("#activo").checked = true;
-    }
+var btnsElimClis =  document.querySelectorAll('.eliminarClientes');
+btnsElimClis.forEach((btn)=>{
+   btn.addEventListener('click',(e)=>{
+        if(modaldeleteClientes.classList.contains('hidden')){
+    
+            modaldeleteClientes.classList.remove('hidden');
+            modaldeleteClientes.classList.add("fixed");
+            document.querySelector("#activo").checked = true;
+        }
+    });
+
 });
+
+ 
 
 
 //Validacion en tiempo real del formulario de agregar clientes
