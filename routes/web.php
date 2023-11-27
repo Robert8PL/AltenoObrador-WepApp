@@ -25,7 +25,9 @@ Route::get('/', function () {
 });
 
 
-Route::resource('clientes', ClienteController::class);
+Route::resource('clientes', ClienteController::class)->except('update');
+Route::put('clientes', [ClienteController::class, 'update'])->name('clientes.update');
+
 Route::resource('productos',ProductosController::class);
 Route::resource('pedidos', PedidosController::class);
 Route::resource('pagos', PagosController::class);

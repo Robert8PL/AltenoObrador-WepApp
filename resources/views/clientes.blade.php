@@ -38,23 +38,24 @@
 
                 {{-- Modal para editar clientes --}}
 
-                <div class="custom-modal m-edit-cliente w-screen h-screen hidden fixed top-0 left-0 backdrop-blur-sm transition">
+                <div class="custom-modal m-edit-cliente w-screen h-screen hidden top-0 left-0 backdrop-blur-sm">
 
                     <div class="absolute center-modal bg-gray-200 opacity-75 rounded-xl "> 
                             <div class="p-2 pt-8 font-sans text-center">
                                 <h3 class="text-2xl text-gray-800 font-bold">Editar cliente</h3>
         
         
-                                <form action="{{route('clientes.update',  ['cliente' => ''])}}" method="patch" class="mt-5">
+                                <form action="{{route('clientes.update')}}" method="POST" class="mt-5">
                                     @csrf
-                                    <input type="text" id="nombreEdit" placeholder="Nombre" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
-                                    <input type="tel" maxlength="10" id="telefonoEdit" placeholder="Telefono" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
-                                    <input type="email" id="correoEdit" placeholder="Correo electronico (opcional)" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
-                                    <input type="text" id="dirEdit" placeholder="Dirección" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5"> 
+                                    @method('PUT')
+                                    <input type="text" id="nombreEdit"  name="nombreEdit" placeholder="Nombre" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
+                                    <input type="tel" maxlength="10" id="telefonoEdit" name="telefonoEdit" placeholder="Telefono" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
+                                    <input type="email" id="correoEdit" name="correoEdit" placeholder="Correo electronico (opcional)" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
+                                    <input type="text" id="dirEdit" name="dirEdit" placeholder="Dirección" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5"> 
                                     <input type="hidden" name="id_cli" id="id_cli" value="">
                                     <br>
                                     
-                                            <input type="submit" value="Registrar" id="btnEditCli" class="w-40 h-8 bg-blue-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-gray-500 cursor-pointer transition-all hover:bg-blue-900 hover:text-teal-300 hover:shadow-md hover:ring-2  disabled:opacity-25 disabled:cursor-not-allowed">
+                                            <input type="submit" value="Editar" id="btnEditCli" class="w-40 h-8 bg-blue-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-gray-500 cursor-pointer transition-all hover:bg-blue-900 hover:text-teal-300 hover:shadow-md hover:ring-2  disabled:opacity-25 disabled:cursor-not-allowed">
                                             <button type="button" id="btn-cerrar2"  class="w-40 h-8 ml-5 mb-2 bg-red-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-red-500   transition-all hover:bg-red-900  hover:shadow-md hover:ring-2">Cancelar</button>
                                             <br> <small id="infoEditCli" class=" font-bold text-red-500"></small>
                                         </div>
@@ -76,9 +77,11 @@
                                     <small class="text-green-800 font-bold">Podrá habilitarlo de nuevo en cualquier momento</small>
 
             
-                                    <form action="" method="delete" class="mt-5">
+                                    <form action="{{route('clientes.destroy', ['cliente' => '0'])}}" method="post" class="mt-5">
                                         @csrf
-                                                <input type="submit" value="Eliminar" class="w-40 h-8 bg-red-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-red-500 cursor-pointer transition-all hover:bg-red-900  hover:shadow-md hover:ring-2">
+                                        @method('DELETE')
+                                                <input type="hidden" name="id_cli" id="cliId" value=""> 
+                                                <input type="submit" value="Inhabilitar" class="w-40 h-8 bg-red-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-red-500 cursor-pointer transition-all hover:bg-red-900  hover:shadow-md hover:ring-2">
                                                 <button type="button" id="btn-cerrar3"  class="w-40 h-8 ml-5 bg-blue-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-gray-500   transition-all hover:bg-blue-900  hover:shadow-md hover:ring-2">Cancelar</button>
                                     </form>
                                     
@@ -87,6 +90,30 @@
                         </div>
                     </div>
 
+                            {{-- Modal habilitar clientes --}}
+
+                    <div class="custom-modal m-enable-clientes w-full p-2 h-full hidden left-0 top-0 backdrop-blur-sm transition">
+
+                        <div class="h-48 bg-gray-200 center-modal relative top-1/4 left-1/4 opacity-75 rounded-xl "> 
+                                <div class="p-2 pt-5 font-sans text-center">
+                                    
+                                    <h3 class="text-2xl text-green-700 font-bold mb-3">Habilitar cliente</h3>
+                                    <p class="font-bold text-gray-700">¿Esta seguro que desea habilitar este cliente?</p>
+                                    <small class="text-green-800 font-bold">Esta accion de puede deshacer en cualquier momento</small>
+
+            
+                                    <form action="{{route('clientes.update')}}" method="post" class="mt-5">
+                                        @csrf
+                                        @method('put')
+                                                <input type="hidden" name="id_cli" id="cliEnaId" value=""> 
+                                                <input type="submit" value="Habilitar" class="w-40 h-8 bg-green-700 font-sans font-bold text-xl text-white rounded-xl ring- ring-green-500 cursor-pointer transition-all hover:bg-green-900  hover:shadow-md hover:ring-2">
+                                                <button type="button" id="btn-cerrar4"  class="w-40 h-8 ml-5 bg-blue-700 font-sans font-bold text-xl text-white rounded-xl ring-1 ring-gray-500   transition-all hover:bg-blue-900  hover:shadow-md hover:ring-2">Cancelar</button>
+                                    </form>
+                                    
+                                </div>
+            
+                        </div>
+                    </div>
 
         </div>
 
@@ -126,8 +153,19 @@
                          {{ $cliente->estado ? 'ACTIVO' : 'INACTIVO' }} 
                     </span>
                 </td>
-                <td class="border-b"> <x-button class="bg-yellow-500 my-2 editarClientes" id="{{$cliente->id}}" >Editar</x-button>
-                <x-button class="bg-red-500 eliminarClientes mb-1" id="{{$cliente->id}}">Inhabilitar</x-button>
+                <td class="border-b"> <x-button class="bg-yellow-500 my-2 editarClientes" id="{{$cliente->id}}">Editar</x-button>
+               @if ($cliente->estado == 0)
+                   
+               <x-button class="bg-green-500 habilitarClientes mb-1" id="{{$cliente->id}}">Habilitar</x-button>
+               @else
+
+               <x-button class="bg-red-500 eliminarClientes mb-1" id="{{$cliente->id}}">Inhabilitar</x-button>
+               @endif
+               
+            
+            
+                   
+               
                 </td>
             </tr>
                  @endforeach 
@@ -135,7 +173,5 @@
         </table>
         {{$clientes->links()}}
 
-
-
-
+        <script src="{{asset('cusmComponents.js')}}"></script>
   </x-app-layout>

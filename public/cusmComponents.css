@@ -14,14 +14,37 @@
     left: calc(50% - 17rem);
 }
 
+.m-add-cliente > .center-modal2{
+    width: 34rem;
+    height: 45rem;
+    top: calc(50% - 22.5rem);
+    left: calc(50% - 17rem);
+}
+
 .m-delete-clientes > .center-modal{
     width: 28rem;
     top:calc(50% - 6rem);
     left: calc(50% - 14rem);
 }
+.m-enable-clientes > .center-modal{
+    width: 28rem;
+    top:calc(50% - 6rem);
+    left: calc(50% - 14rem);
+}
+
 .text-orange-500{
     color: rgb(249 115 22);
 }
 .text-amber-500{
     color: rgb(245 158 11);
 }
+
+.custom-modal {
+    opacity: 0 !important; /* Inicialmente establece la opacidad en 0 (totalmente transparente) */
+     transition: opacity 1.2s ease-in-out !important;
+  }
+  
+  /* Cuando la clase .hidden se elimina, la opacidad cambia a 1 (totalmente opaco) */
+  .custom-modal:not(.hidden) {
+    opacity: 1 !important;
+  }

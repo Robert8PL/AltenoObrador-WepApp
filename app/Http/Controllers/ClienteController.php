@@ -58,23 +58,42 @@ class ClienteController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request)
-    {
-        $cli = new cliente();
-        $cli->nombre = $request->nombreEdit;
-        $cli->direccion = $request->dirEdit;  
-        $cli->tel = $request->telefonoEdit;
-        $cli->email = $request->correoEdit;
-/*         $cli->update()->where('id','=',$request->cli_id);
- */
-        return redirect()->action([ClienteController::class,'index']);
+    {   
+
+        
+        $id_Cli = $request->id_cli;
+        $cli = cliente::findOrFail($id_Cli);
+
+        if($request->nombreEdit == null ){
+            $cli->update([
+                'estado' => 1
+            ]);
+            return redirect()->action([ClienteController::class,'index']);
+        } else {
+
+            
+            $cli->update([
+                'nombre' => $request->nombreEdit,
+                'direccion' => $request->dirEdit,  
+                'tel' => $request->telefonoEdit,
+                'email' => $request->correoEdit
+            ]);
+            
+            return redirect()->action([ClienteController::class,'index']);
+        }
         
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $req,string $id)
     {
-        //
+        $id_cli = $req->id_cli;
+        $cli = cliente::findOrFail($id_cli);
+        $cli->update([
+            'estado'=> 0
+        ]);
+        return redirect()->action([ClienteController::class, 'index']);
     }
 }

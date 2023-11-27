@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var modal = document.querySelector(".custom-modal");
     var modalEditClientes = document.querySelector(".m-edit-cliente");
     var modaldeleteClientes = document.querySelector(".m-delete-clientes");
+    var modalEnableClientes = document.querySelector(".m-enable-clientes");
 
     // campos del formulario agregar clientes
     var addNombre = document.querySelector("#nombreAdd");
@@ -105,21 +106,52 @@ btnsEditarClientes.forEach((btn)=>{
    
 
 
-//modal eliminar clientes
+//modal inhabilitar clientes
 
 var btnsElimClis =  document.querySelectorAll('.eliminarClientes');
 btnsElimClis.forEach((btn)=>{
    btn.addEventListener('click',(e)=>{
-        if(modaldeleteClientes.classList.contains('hidden')){
-    
+    let id = e.target.id;
+    let inputId = document.querySelector('#cliId');
+        
+    if(modaldeleteClientes.classList.contains('hidden')){
+            inputId.value = id;
             modaldeleteClientes.classList.remove('hidden');
             modaldeleteClientes.classList.add("fixed");
-            document.querySelector("#activo").checked = true;
+            
         }
     });
 
 });
 
+// abrir modal habilidar clientes
+
+var btnsEnableClis =  document.querySelectorAll('.habilitarClientes');
+btnsEnableClis.forEach((btn)=>{
+   btn.addEventListener('click',(e)=>{
+    let id = e.target.id;
+    let inputId = document.querySelector('#cliEnaId');
+        
+    if(modalEnableClientes.classList.contains('hidden')){
+        modalEnableClientes.classList.remove('hidden');
+        modalEnableClientes.classList.add("fixed");
+        inputId.value = id;
+            
+        }
+    });
+
+});
+
+// cerrar modal habilitar clientes
+document.querySelector('#btn-cerrar4')
+    .addEventListener('click',(e)=>{
+
+        if(modalEnableClientes.classList.contains('fixed')){
+                    modalEnableClientes.classList.remove('fixed');
+                    modalEnableClientes.classList.add("hidden");
+
+        }
+    }); 
  
 
 
