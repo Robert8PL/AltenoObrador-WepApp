@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', function(){
     //campos del formulario editar clientes
     var edtNombre = document.querySelector('#nombreEdit');
     var edtTelefono = document.querySelector('#telefonoEdit');
+    var edtCorreo = document.querySelector('#correoEdit')
     var edtDir = document.querySelector('#dirEdit');
+    
 
     var btnEditCli = document.querySelector('#btnEditCli');
     var infoEditCli = document.querySelector('#infoEditCli');
@@ -79,15 +81,22 @@ var btnsEditarClientes = document.querySelectorAll('.editarClientes');
 btnsEditarClientes.forEach((btn)=>{
     btn.addEventListener('click',(e)=>{
         if(modal.classList.contains('hidden')){
+            let id = e.target.id;
+            let datos = document.querySelector('#cl'+id);
 
             modalEditClientes.classList.remove('hidden');
             modalEditClientes.classList.add("fixed");
-            document.querySelector("#activo").checked = true;
-            btnEditCli.disabled = true;
+            
+            edtNombre.value = datos.dataset.nombre;
+            edtDir.value= datos.dataset.dir;
+            edtCorreo.value = datos.dataset.correo;
+            edtTelefono.value = datos.dataset.tel;
+            
 
-            let id = e.target.id;
             document.querySelector('#id_cli').value = id;
-    
+
+            
+            
         }
     })
    

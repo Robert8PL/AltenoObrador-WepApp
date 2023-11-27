@@ -45,7 +45,7 @@
                                 <h3 class="text-2xl text-gray-800 font-bold">Editar cliente</h3>
         
         
-                                <form action="" method="update" class="mt-5">
+                                <form action="{{route('clientes.update',  ['cliente' => ''])}}" method="patch" class="mt-5">
                                     @csrf
                                     <input type="text" id="nombreEdit" placeholder="Nombre" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
                                     <input type="tel" maxlength="10" id="telefonoEdit" placeholder="Telefono" class="rounded-xl bg-gray-100 bg-transparent w-3/4 text-center mb-5">
@@ -89,13 +89,15 @@
 
 
         </div>
-        <table class="w-3/4 lg:w-5/6 mx-auto bg-white border border-gray-300">
+
+        <table class="w-3/4 lg:w-11/12 mx-auto mb-2 bg-white border border-gray-300">
             <thead>
                
 
                 <tr class="bg-gray-800 text-white">
                     <th class="py-2 px-4 border-b">Cliente</th>
                     <th class="py-2 px-4 border-b">Dirección</th>
+                    <th class="py-2 px-4 border-b">Contacto</th>
                     <th class="py-2 px-4 border-b">Deuda</th>
                     <th class="py-2 px-4 border-b">Estado</th>
                     <th class="py-2 px-4 border-b">Acciones</th>
@@ -105,28 +107,34 @@
                  @foreach($clientes as $cliente)
                  <p class="hidden">{{ $deudaEstado = ($cliente->deuda * 100 / 50000) }}</p>
                 
-                 <tr class="text-center hover:bg-slate-100">
-                <td class="py-2 px-4 border-b"> {{ $cliente->nombre }}</td>
-                <td class="py-2 px-4 border-b"> {{ $cliente->direccion }}  </td>
-                <td class="py-2 px-4 border-b font-bold text-{{ 
-                
-                $deudaEstado < 25 ? 'blue' : ($deudaEstado < 50 ? 'amber' : 
-                ($deudaEstado < 65 ? 'orange' : 'red'))
-                
-                }}-500"> ${{ $cliente->deuda }} / $50,000</td>
-                <td class="py-2 px-4 border-b">
+                 <tr class="text-center hover:bg-slate-100" id="cl{{$cliente->id}}" 
+                    data-nombre="{{$cliente->nombre}}"
+                    data-dir="{{$cliente->direccion}}"
+                    data-tel="{{$cliente->tel}}"
+                    data-correo={{$cliente->email}}
+                    >
+                     <td class="py-2 px-4 border-b"> {{ $cliente->nombre }}</td>
+                     <td class="py-2 px-4 border-b"> {{ $cliente->direccion }}  </td>
+                     <td class="py-2 px-4 border-b"> {{ $cliente->tel}} <br> {{$cliente->email}} </td>
+                     <td class="py-2 px-4 border-b font-bold text-{{ 
+                      $deudaEstado < 25 ? 'blue' : ($deudaEstado < 50 ? 'amber' : 
+                      ($deudaEstado < 65 ? 'orange' : 'red'))
+                      }}-500"> ${{ $cliente->deuda }} / $50,000 </td>
+
+                <td class="py-2 px-4 border-b font-bold">
                     <span class="{{ ($cliente->estado == 1) ? 'text-green-500' : 'text-red-500' }}">
                          {{ $cliente->estado ? 'ACTIVO' : 'INACTIVO' }} 
                     </span>
                 </td>
                 <td class="border-b"> <x-button class="bg-yellow-500 my-2 editarClientes" id="{{$cliente->id}}" >Editar</x-button>
-                <x-button class="bg-red-500 eliminarClientes mb-1" id="{{$cliente->id}}">Eliminar</x-button>
+                <x-button class="bg-red-500 eliminarClientes mb-1" id="{{$cliente->id}}">Inhabilitar</x-button>
                 </td>
             </tr>
                  @endforeach 
             </tbody>
         </table>
-    </div>
+        {{$clientes->links()}}
+
 
 
 

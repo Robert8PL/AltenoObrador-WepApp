@@ -49,17 +49,25 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(Request $request)
+    {   
+       
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $cli = new cliente();
+        $cli->nombre = $request->nombreEdit;
+        $cli->direccion = $request->dirEdit;  
+        $cli->tel = $request->telefonoEdit;
+        $cli->email = $request->correoEdit;
+/*         $cli->update()->where('id','=',$request->cli_id);
+ */
+        return redirect()->action([ClienteController::class,'index']);
+        
     }
 
     /**
