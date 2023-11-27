@@ -11,7 +11,7 @@
         @endif
         
 
-        <div class="w-full h-3/6 m-8 flex justify-between sm:max-w-xl bg-white shadow-lg overflow-hidden sm:rounded-lg">
+        <div class="w-full h-4/6 m-8 flex justify-between sm:max-w-xl bg-white shadow-lg overflow-hidden sm:rounded-lg">
             <form method="POST" action="{{ route('login') }}" class="w-fit p-6">
                 <h1 class="m-4 mb-6 text-2xl">Ingresar al sistema</h1>
              @csrf
